@@ -2,6 +2,7 @@ import Head from 'next/head'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import ControlPanel from '../components/ControlPanel'
+import CardBoard from '../components/CardBoard'
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <main className="container">
         <div className=" d-flex flex-row">
           <ControlPanel/>
+          <CardBoard/>
         </div>
       </main>
     </div>
