@@ -29,7 +29,7 @@ export default function Home() {
   const [cards, setCards] = useState([...INIITAL_CARDS])
   useEffect(() => {
     if (state === STATE_NEW) {
-      const temp = [...INIITAL_CARDS]
+      const temp = JSON.parse(JSON.stringify(INIITAL_CARDS))
       const newCards = knuthShuffle(temp)
       setCards(newCards)
       setState(STATE_PLAYING)
