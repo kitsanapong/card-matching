@@ -1,3 +1,5 @@
+import React from "react";
+
 import { useState, useMemo, useEffect } from 'react'
 import { knuthShuffle } from 'knuth-shuffle'
 import Head from 'next/head'

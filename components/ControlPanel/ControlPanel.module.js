@@ -1,3 +1,5 @@
+import React from "react";
+
 import style from './ControlPanel.module.scss'
 import { useState, useEffect } from 'react'
 import Axios from 'axios'

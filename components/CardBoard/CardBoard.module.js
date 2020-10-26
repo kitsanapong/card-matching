@@ -1,3 +1,5 @@
+import React from "react";
+
 import Card from '../Card/Card.module'
 
 import style from './CardBoard.module.scss'
