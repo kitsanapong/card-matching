@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import ControlPanel from '../components/ControlPanel/ControlPanel.module'
 import CardBoard from '../components/CardBoard/CardBoard.module'
-import { countOpenCards } from '../utils/utils'
+import { countOpenCards, simpleDeepCopy } from '../utils/utils'
 
 const STATE_PLAYING = 'STATE_PLAYING'
 const STATE_NEW = 'STATE_NEW'
@@ -40,7 +40,7 @@ export default function Home() {
       }
       setClickCount(0)
 
-      const temp = JSON.parse(JSON.stringify(INIITAL_CARDS))
+      const temp = simpleDeepCopy(INIITAL_CARDS)
       const newCards = knuthShuffle(temp)
       setCards(newCards)
       setState(STATE_PLAYING)

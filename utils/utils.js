@@ -4,3 +4,7 @@ export function countOpenCards(cards = []) {
     else return count
   }, 0)
 }
+
+export function simpleDeepCopy(data = {}) {
+  return JSON.parse(JSON.stringify(data))
+}
