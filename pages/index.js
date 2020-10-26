@@ -1,10 +1,35 @@
+import { useState, useMemo } from 'react'
+import { knuthShuffle } from 'knuth-shuffle'
 import Head from 'next/head'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import ControlPanel from '../components/ControlPanel'
 import CardBoard from '../components/CardBoard/CardBoard.module'
 
+const STATE_PLAYING = 'STATE_PLAYING'
+const STATE_NEW = 'STATE_NEW'
+
 export default function Home() {
+  const [state, setState] = useState(STATE_PLAYING)
+  const [cards, setCards] = useState([
+    { id: 1, value: 1, isOpen: false },
+    { id: 2, value: 2, isOpen: false },
+    { id: 3, value: 3, isOpen: false },
+    { id: 4, value: 4, isOpen: false },
+    { id: 5, value: 5, isOpen: false },
+    { id: 6, value: 6, isOpen: false },
+    { id: 7, value: 1, isOpen: false },
+    { id: 8, value: 2, isOpen: false },
+    { id: 9, value: 3, isOpen: false },
+    { id: 10, value: 4, isOpen: false },
+    { id: 11, value: 5, isOpen: false },
+    { id: 12, value: 6, isOpen: false },
+  ])
+  useState(() => {
+    const temp = [...cards]
+    const newCards = knuthShuffle(temp)
+    setCards(newCards)
+  }, [])
   return (
     <div>
       <Head>
@@ -14,7 +39,14 @@ export default function Home() {
       <main className="container">
         <div className=" d-flex flex-row justify-content-center">
           <ControlPanel/>
-          <CardBoard/>
+          <CardBoard
+            cards={cards}
+            clickCard={(index) => {
+              const temp = [...cards]
+              temp[index].isOpen = !temp[index].isOpen
+              setCards(temp)
+            }}
+          />
         </div>
       </main>
     </div>
