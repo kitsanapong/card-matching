@@ -50,14 +50,21 @@ export default function Home() {
           <CardBoard
             cards={cards}
             clickCard={(index) => {
-              if (selectedCardIndex > 0) {
+              const isNewRoundCard = selectedCardIndex === -1
+              if (isNewRoundCard) {
+                const temp = [...cards]
+                temp[index].isOpen = !temp[index].isOpen
+                setSelectedCardIndex(index)
+                setCards(temp)
+              } else {
                 const previousCard = cards[selectedCardIndex]
                 const newCard = cards[index]
                 const temp = [...cards]
                 temp[index].isOpen = !temp[index].isOpen
                 setCards(temp)
                 setTimeout(() => {
-                  if (previousCard.value === newCard.value) {
+                  const isMatched = previousCard.value === newCard.value
+                  if (isMatched) {
 
                   } else {
                     const temp = [...cards]
@@ -67,11 +74,6 @@ export default function Home() {
                   }
                   setSelectedCardIndex(-1)
                 }, 300)
-              } else {
-                const temp = [...cards]
-                temp[index].isOpen = !temp[index].isOpen
-                setSelectedCardIndex(index)
-                setCards(temp)
               }
             }}
           />
