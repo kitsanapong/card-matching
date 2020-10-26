@@ -33,7 +33,14 @@ export default function Home() {
   const [selectedCardIndex, setSelectedCardIndex] = useState(-1)
   useEffect(() => {
     if (state === STATE_NEW) {
-      if (bestCount === undefined || clickCount < bestCount) setBestCount(clickCount)
+      const openCardCount = cards.reduce((count, item) => {
+        if (item.isOpen) return count + 1
+        else return count
+      }, 0)
+      const isGameFinished = openCardCount === 12
+      if (isGameFinished) {
+        if (bestCount === undefined || clickCount < bestCount) setBestCount(clickCount)
+      }
       setClickCount(0)
 
       const temp = JSON.parse(JSON.stringify(INIITAL_CARDS))
