@@ -75,15 +75,7 @@ export default function Home() {
                   setState(STATE_CHECK)
                   setTimeout(() => {
                     const isMatched = previousCard.value === newCard.value
-                    if (isMatched) {
-                      const openCardCount = cards.reduce((count, item) => {
-                        if (item.isOpen) return count + 1
-                        else return count
-                      }, 0)
-                      if (openCardCount === 12) {
-                        setState(STATE_NEW)
-                      }
-                    } else {
+                    if (!isMatched) {
                       const temp = [...cards]
                       temp[selectedCardIndex].isOpen = false
                       temp[index].isOpen = false
