@@ -18,10 +18,11 @@ function Button(props) {
 function ControlPanel(props) {
   const {
     newGame = () => {},
+    clickCount = '-',
   } = props
   return (
     <div className="control-panel d-flx flex-column">
-      <Score name="Click"/>
+      <Score name="Click" value={clickCount}/>
       <Score name="My Best"/>
       <Score name="Global Best"/>
       <Button onClick={newGame}/>

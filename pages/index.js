@@ -26,6 +26,7 @@ const INIITAL_CARDS = [
 ]
 
 export default function Home() {
+  const [clickCount, setClickCount] = useState(0)
   const [state, setState] = useState(STATE_NEW)
   const [cards, setCards] = useState([...INIITAL_CARDS])
   const [selectedCardIndex, setSelectedCardIndex] = useState(-1)
@@ -46,12 +47,14 @@ export default function Home() {
       <main className="container">
         <div className=" d-flex flex-row justify-content-center">
           <ControlPanel
+            clickCount={clickCount}
             newGame={() => { setState(STATE_NEW) }}
           />
           <CardBoard
             cards={cards}
             clickCard={(index) => {
               if (state === STATE_PLAYING) {
+                setClickCount(clickCount+1)
                 const isNewRoundCard = selectedCardIndex === -1
                 if (isNewRoundCard) {
                   const temp = [...cards]
