@@ -3,9 +3,13 @@ import Card from '../Card/Card.module'
 import style from './CardBoard.module.scss'
 
 function CardBoard() {
+
   return (
     <div className={style.board}>
-      <Card value={1}/>
+      <Card
+        value={1}
+        isOpen={true}
+      />
       <Card value={2}/>
       <Card value={3}/>
       <Card value={4}/>
