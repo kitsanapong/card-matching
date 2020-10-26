@@ -8,6 +8,7 @@ import CardBoard from '../components/CardBoard/CardBoard.module'
 
 const STATE_PLAYING = 'STATE_PLAYING'
 const STATE_NEW = 'STATE_NEW'
+const STATE_CHECK = 'STATE_CHECK'
 
 const INIITAL_CARDS = [
   { id: 1, value: 1, isOpen: false },
@@ -50,30 +51,34 @@ export default function Home() {
           <CardBoard
             cards={cards}
             clickCard={(index) => {
-              const isNewRoundCard = selectedCardIndex === -1
-              if (isNewRoundCard) {
-                const temp = [...cards]
-                temp[index].isOpen = !temp[index].isOpen
-                setSelectedCardIndex(index)
-                setCards(temp)
-              } else {
-                const previousCard = cards[selectedCardIndex]
-                const newCard = cards[index]
-                const temp = [...cards]
-                temp[index].isOpen = !temp[index].isOpen
-                setCards(temp)
-                setTimeout(() => {
-                  const isMatched = previousCard.value === newCard.value
-                  if (isMatched) {
-
-                  } else {
-                    const temp = [...cards]
-                    temp[selectedCardIndex].isOpen = false
-                    temp[index].isOpen = false
-                    setCards(temp)
-                  }
-                  setSelectedCardIndex(-1)
-                }, 300)
+              if (state === STATE_PLAYING) {
+                const isNewRoundCard = selectedCardIndex === -1
+                if (isNewRoundCard) {
+                  const temp = [...cards]
+                  temp[index].isOpen = true
+                  setSelectedCardIndex(index)
+                  setCards(temp)
+                } else {
+                  const previousCard = cards[selectedCardIndex]
+                  const newCard = cards[index]
+                  const temp = [...cards]
+                  temp[index].isOpen = true
+                  setCards(temp)
+                  setState(STATE_CHECK)
+                  setTimeout(() => {
+                    const isMatched = previousCard.value === newCard.value
+                    if (isMatched) {
+  
+                    } else {
+                      const temp = [...cards]
+                      temp[selectedCardIndex].isOpen = false
+                      temp[index].isOpen = false
+                      setCards(temp)
+                    }
+                    setSelectedCardIndex(-1)
+                    setState(STATE_PLAYING)
+                  }, 500)
+                }
               }
             }}
           />
