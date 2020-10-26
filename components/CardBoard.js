@@ -1,9 +1,4 @@
-function Card(props) {
-  const { value = '' } = props
-  return (
-    <div className="card d-flex align-items-center justify-content-center">{value}</div>
-  )
-}
+import Card from './Card/Card.module'
 
 function CardBoard() {
   return (
