@@ -1,4 +1,6 @@
 import style from './ControlPanel.module.scss'
+import { useState, useEffect } from 'react'
+import Axios from 'axios'
 
 function Score(props) {
   const { name = '', value = '-'} = props
@@ -26,11 +28,17 @@ function ControlPanel(props) {
     clickCount = '-',
     bestCount = '-',
   } = props
+  const [globalBest, setGlobalBest] = useState(undefined)
+  useEffect(() => {
+    Axios.get('http://localhost:3000/api/global').then((res) => {
+      if (res && res.data) setGlobalBest(res.data.globalBest)
+    })
+  }, [])
   return (
     <div className={style.panel}>
       <Score name="Click" value={clickCount}/>
       <Score name="My Best" value={bestCount}/>
-      <Score name="Global Best"/>
+      <Score name="Global Best" value={globalBest}/>
       <Button onClick={newGame}/>
     </div>
   )
