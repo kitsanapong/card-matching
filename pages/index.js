@@ -27,6 +27,7 @@ const INIITAL_CARDS = [
 export default function Home() {
   const [state, setState] = useState(STATE_NEW)
   const [cards, setCards] = useState([...INIITAL_CARDS])
+  const [selectedCardIndex, setSelectedCardIndex] = useState(-1)
   useEffect(() => {
     if (state === STATE_NEW) {
       const temp = JSON.parse(JSON.stringify(INIITAL_CARDS))
@@ -49,9 +50,29 @@ export default function Home() {
           <CardBoard
             cards={cards}
             clickCard={(index) => {
-              const temp = [...cards]
-              temp[index].isOpen = !temp[index].isOpen
-              setCards(temp)
+              if (selectedCardIndex > 0) {
+                const previousCard = cards[selectedCardIndex]
+                const newCard = cards[index]
+                const temp = [...cards]
+                temp[index].isOpen = !temp[index].isOpen
+                setCards(temp)
+                setTimeout(() => {
+                  if (previousCard.value === newCard.value) {
+
+                  } else {
+                    const temp = [...cards]
+                    temp[selectedCardIndex].isOpen = false
+                    temp[index].isOpen = false
+                    setCards(temp)
+                  }
+                  setSelectedCardIndex(-1)
+                }, 300)
+              } else {
+                const temp = [...cards]
+                temp[index].isOpen = !temp[index].isOpen
+                setSelectedCardIndex(index)
+                setCards(temp)
+              }
             }}
           />
         </div>
