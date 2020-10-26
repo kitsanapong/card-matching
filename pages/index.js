@@ -12,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container">
-        <div className=" d-flex flex-row">
+        <div className=" d-flex flex-row justify-content-center">
           <ControlPanel/>
           <CardBoard/>
         </div>

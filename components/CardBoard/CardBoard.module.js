@@ -14,6 +14,9 @@ function CardBoard() {
       <Card value={7}/>
       <Card value={8}/>
       <Card value={9}/>
+      <Card value={10}/>
+      <Card value={11}/>
+      <Card value={12}/>
     </div>
   )
 }
