@@ -1,26 +1,39 @@
 import Card from '../Card/Card.module'
 
 import style from './CardBoard.module.scss'
+import { useState } from 'react'
 
 function CardBoard() {
-
+  const [cards, setCards] = useState([
+    { value: 1, isOpen: false },
+    { value: 2, isOpen: false },
+    { value: 3, isOpen: false },
+    { value: 4, isOpen: false },
+    { value: 5, isOpen: false },
+    { value: 6, isOpen: false },
+    { value: 1, isOpen: false },
+    { value: 2, isOpen: false },
+    { value: 3, isOpen: false },
+    { value: 4, isOpen: false },
+    { value: 5, isOpen: false },
+    { value: 6, isOpen: false },
+  ])
   return (
     <div className={style.board}>
-      <Card
-        value={1}
-        isOpen={true}
-      />
-      <Card value={2}/>
-      <Card value={3}/>
-      <Card value={4}/>
-      <Card value={5}/>
-      <Card value={6}/>
-      <Card value={7}/>
-      <Card value={8}/>
-      <Card value={9}/>
-      <Card value={10}/>
-      <Card value={11}/>
-      <Card value={12}/>
+      {cards.map((item, index) => {
+        return (
+          <Card
+            key={item.value}
+            value={item.value}
+            isOpen={item.isOpen}
+            onClick={() => {
+              const temp = [...cards]
+              temp[index].isOpen = !temp[index].isOpen
+              setCards(temp)
+            }}
+          />
+        )
+      })}
     </div>
   )
 }
