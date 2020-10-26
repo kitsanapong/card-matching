@@ -8,19 +8,23 @@ function Score(props) {
   )
 }
 
-function Button() {
+function Button(props) {
+  const { onClick = () => {} } = props
   return (
-    <div>New Game</div>
+    <div onClick={onClick}>New Game</div>
   )
 }
 
-function ControlPanel() {
+function ControlPanel(props) {
+  const {
+    newGame = () => {},
+  } = props
   return (
     <div className="control-panel d-flx flex-column">
       <Score name="Click"/>
       <Score name="My Best"/>
       <Score name="Global Best"/>
-      <Button/>
+      <Button onClick={newGame}/>
     </div>
   )
 }
