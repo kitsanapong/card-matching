@@ -1,7 +1,9 @@
+import style from './ControlPanel.module.scss'
+
 function Score(props) {
   const { name = '', value = '-'} = props
   return (
-    <div className="score click-number d-flex flex-column">
+    <div className={style.score}>
       <div className="name">{name}</div>
       <div className="value">{value}</div>
     </div>
@@ -11,7 +13,10 @@ function Score(props) {
 function Button(props) {
   const { onClick = () => {} } = props
   return (
-    <div onClick={onClick}>New Game</div>
+    <div
+      className={style.button}
+      onClick={onClick}
+    >New Game</div>
   )
 }
 
@@ -22,7 +27,7 @@ function ControlPanel(props) {
     bestCount = '-',
   } = props
   return (
-    <div className="control-panel d-flx flex-column">
+    <div className={style.panel}>
       <Score name="Click" value={clickCount}/>
       <Score name="My Best" value={bestCount}/>
       <Score name="Global Best"/>

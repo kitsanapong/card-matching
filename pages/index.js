@@ -3,7 +3,7 @@ import { knuthShuffle } from 'knuth-shuffle'
 import Head from 'next/head'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import ControlPanel from '../components/ControlPanel'
+import ControlPanel from '../components/ControlPanel/ControlPanel.module'
 import CardBoard from '../components/CardBoard/CardBoard.module'
 
 const STATE_PLAYING = 'STATE_PLAYING'
@@ -48,7 +48,7 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="container">
+      <main className="container pt-3">
         <div className=" d-flex flex-row justify-content-center">
           <ControlPanel
             clickCount={clickCount}
