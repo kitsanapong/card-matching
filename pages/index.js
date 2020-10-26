@@ -26,12 +26,16 @@ const INIITAL_CARDS = [
 ]
 
 export default function Home() {
-  const [clickCount, setClickCount] = useState(0)
+  const [clickCount, setClickCount] = useState(undefined)
+  const [bestCount, setBestCount] = useState(undefined)
   const [state, setState] = useState(STATE_NEW)
   const [cards, setCards] = useState([...INIITAL_CARDS])
   const [selectedCardIndex, setSelectedCardIndex] = useState(-1)
   useEffect(() => {
     if (state === STATE_NEW) {
+      if (bestCount === undefined || clickCount < bestCount) setBestCount(clickCount)
+      setClickCount(0)
+
       const temp = JSON.parse(JSON.stringify(INIITAL_CARDS))
       const newCards = knuthShuffle(temp)
       setCards(newCards)
@@ -48,6 +52,7 @@ export default function Home() {
         <div className=" d-flex flex-row justify-content-center">
           <ControlPanel
             clickCount={clickCount}
+            bestCount={bestCount}
             newGame={() => { setState(STATE_NEW) }}
           />
           <CardBoard
@@ -71,7 +76,13 @@ export default function Home() {
                   setTimeout(() => {
                     const isMatched = previousCard.value === newCard.value
                     if (isMatched) {
-  
+                      const openCardCount = cards.reduce((count, item) => {
+                        if (item.isOpen) return count + 1
+                        else return count
+                      }, 0)
+                      if (openCardCount === 12) {
+                        setState(STATE_NEW)
+                      }
                     } else {
                       const temp = [...cards]
                       temp[selectedCardIndex].isOpen = false
