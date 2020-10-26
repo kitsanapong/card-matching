@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import ControlPanel from '../components/ControlPanel/ControlPanel.module'
 import CardBoard from '../components/CardBoard/CardBoard.module'
+import { countOpenCards } from '../utils/utils'
 
 const STATE_PLAYING = 'STATE_PLAYING'
 const STATE_NEW = 'STATE_NEW'
@@ -33,11 +34,7 @@ export default function Home() {
   const [selectedCardIndex, setSelectedCardIndex] = useState(-1)
   useEffect(() => {
     if (state === STATE_NEW) {
-      const openCardCount = cards.reduce((count, item) => {
-        if (item.isOpen) return count + 1
-        else return count
-      }, 0)
-      const isGameFinished = openCardCount === 12
+      const isGameFinished = countOpenCards(cards) === 12
       if (isGameFinished) {
         if (bestCount === undefined || clickCount < bestCount) setBestCount(clickCount)
       }

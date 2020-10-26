@@ -5,15 +5,20 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest utils/utils.test.js --config jest.config.js"
   },
   "dependencies": {
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
+    "jest": "^26.6.1",
     "knuth-shuffle": "^1.0.8",
     "next": "9.5.5",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "sass": "^1.27.0"
+  },
+  "devDependencies": {
+    "babel-jest": "^26.6.1"
   }
 }
