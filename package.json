@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest utils/utils.test.js --config jest.config.js"
+    "test": "jest utils/utils.test.js --config jest.config.js --watchAll"
   },
   "dependencies": {
     "axios": "^0.21.0",
