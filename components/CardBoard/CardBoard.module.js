@@ -1,8 +1,10 @@
-import Card from './Card/Card.module'
+import Card from '../Card/Card.module'
+
+import style from './CardBoard.module.scss'
 
 function CardBoard() {
   return (
-    <div className="card-baord d-flex flex-row flex-wrap">
+    <div className={style.board}>
       <Card value={1}/>
       <Card value={2}/>
       <Card value={3}/>
